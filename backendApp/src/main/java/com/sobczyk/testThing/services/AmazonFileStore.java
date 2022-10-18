@@ -2,15 +2,17 @@ package com.sobczyk.testThing.services;
 
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.model.ObjectMetadata;
-import com.amazonaws.services.s3.model.S3Object;
-import com.amazonaws.services.s3.model.S3ObjectInputStream;
+import com.amazonaws.services.s3.model.*;
+import com.amazonaws.services.s3.waiters.AmazonS3Waiters;
 import com.amazonaws.util.IOUtils;
+import com.amazonaws.waiters.Waiter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Date;
 import java.util.Map;
 import java.util.Optional;
 
@@ -49,4 +51,16 @@ public class AmazonFileStore {
             throw new IllegalStateException("Failed to download the file", e);
         }
     }
+
+    public String getUrl(String path, String key, Long duration) {
+        Long dur = duration == null ? 30 : duration;
+        var date = new Date(new Date().getTime() + dur * 1000);
+        try {
+            this.s3.setObjectAcl(path,key,CannedAccessControlList.PublicRead);
+            return String.valueOf(this.s3.generatePresignedUrl(path, key, date));
+        } catch (AmazonS3Exception e) {
+            throw new IllegalStateException("Failed to get file url.", e);
+        }
+    }
+
 }

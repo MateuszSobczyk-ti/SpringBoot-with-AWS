@@ -1,4 +1,4 @@
-package com.sobczyk.testThing.services;
+package com.sobczyk.testThing.responses;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,10 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class FileResponse {
+public class FileData {
 
     private String name;
     private String description;
-    private byte[] image;
-
+    private String imageUrl;
+    private double imageSizeInKB;
 }

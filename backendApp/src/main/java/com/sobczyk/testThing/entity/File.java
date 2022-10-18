@@ -9,7 +9,6 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 @Data
 @NoArgsConstructor
@@ -25,10 +24,16 @@ public class File {
     private String description;
     @NotBlank
     private String imageLink;
+    @Column(name="IMAGE_SIZE_KB")
+    private double imageSize;
+    @Column(name="DOWNLOAD_COUNTER")
+    private Integer downloadCounter;
 
-    public File(String name, String description, String imageLink) {
+    public File(String name, String description, String imageLink, double imageSize) {
         this.name = name;
         this.description = description;
         this.imageLink = imageLink;
+        this.imageSize = imageSize;
+        this.downloadCounter = 0;
     }
 }
