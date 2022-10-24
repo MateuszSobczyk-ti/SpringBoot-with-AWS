@@ -21,3 +21,21 @@ Under the hood, it consist of many AWS services like: Task, Service, Cluster. I 
 - Spring Data Jpa - improve the implementation of data access layer
 
 ## How exactly it works?
+I recommend you to test my app with your favorite API tool like Postman, Swagger or curl. My domain is 54.72.253.131, port is 8080. So to test
+if you can reach my api, send GET request without parameters `54.72.253.131:8080/api/file-store/test`. The answer should be "Helllllo" (It may doesn't work because AWS ECS
+is not a free service, so my app will not be available for a long time. Otherwise you can download docker image and run app on-premises).
+
+#### API's description:
+- URL 
+/api/file-store/createBucket
+- Method
+GET
+- URL params
+bucket_name=[string]
+- Success response
+Code:200
+Content: ``Bucket `bucket_name` has been created.``
+- Error response
+Code:409 Conflict
+Content: ``Bucket name already exists.``
+
