@@ -26,16 +26,32 @@ if you can reach my api, send GET request without parameters `54.72.253.131:8080
 is not a free service, so my app will not be available for a long time. Otherwise you can download docker image and run app on-premises).
 
 #### API's description:
-- URL 
+
+Create bucket(like a folder) in S3 file storage service
+- URL<br>
 /api/file-store/createBucket
-- Method
+- Method<br>
 GET
-- URL params
+- URL params<br>
 bucket_name=[string]
-- Success response
+- Success response<br>
 Code:200
 Content: ``Bucket `bucket_name` has been created.``
-- Error response
+- Error response<br>
+Code:409 Conflict
+Content: ``Bucket name already exists.``
+
+Create bucket(like a folder) in S3 file storage service
+- URL<br>
+/api/file-store/createBucket
+- Method<br>
+GET
+- URL params<br>
+bucket_name=[string]
+- Success response<br>
+Code:200
+Content: ``Bucket `bucket_name` has been created.``
+- Error response<br>
 Code:409 Conflict
 Content: ``Bucket name already exists.``
 
