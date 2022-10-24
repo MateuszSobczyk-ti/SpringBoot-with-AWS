@@ -27,31 +27,68 @@ is not a free service, so my app will not be available for a long time. Otherwis
 
 #### API's description:
 
-Create bucket(like a folder) in S3 file storage service
+Create bucket (like a folder) in S3 file storage service
 - URL<br>
 /api/file-store/createBucket
 - Method<br>
-GET
+POST
 - URL params<br>
 bucket_name=[string]
 - Success response<br>
-Code:200
+Code: 201 CREATED<br>
 Content: ``Bucket `bucket_name` has been created.``
 - Error response<br>
-Code:409 Conflict
+Code: 409 Conflict<br>
 Content: ``Bucket name already exists.``
 
-Create bucket(like a folder) in S3 file storage service
+Upload your image to bucket
 - URL<br>
-/api/file-store/createBucket
+/api/file-store/upload
+- Method<br>
+POST
+- URL params<br>
+file=[jpg/png/gif]<br>
+  Optional:<br>
+bucket_name=[string] (if not provided, then image is saved to bucket predefined as default)
+- Success response<br>
+Code: 200 OK<br>
+Content: ``File has been saved in bucket (or folder): `bucket_name```
+- Error response<br>
+Code: 404 NOT_FOUND<br>
+Content: ``Bucket `bucket_name` does not exists.``<br>
+  or<br>
+Code: 406 NOT_ALLOWED<br>
+Content: ``File cannot be empty and must be in jpeg, png or gif format``
+
+Download image from bucket
+- URL<br>
+/api/file-store/download
 - Method<br>
 GET
 - URL params<br>
-bucket_name=[string]
+  Optional:<br>
+bucket_name=[string] (if not provided, then image is downloaded from default bucket)
 - Success response<br>
-Code:200
-Content: ``Bucket `bucket_name` has been created.``
+Code: 200 OK<br>
+Content: byte array
 - Error response<br>
-Code:409 Conflict
-Content: ``Bucket name already exists.``
+Code: 404 NOT_FOUND<br>
+Content: ``Bucket `bucket_name` does not exists.``<br>
+
+Get image url
+- URL<br>
+/api/file-store/getImageUrls
+- Method<br>
+GET
+- URL params<br>
+  Optional:<br>
+bucket_name=[string] (if not provided, then image is from default bucket)<br>
+duration=[number] (by default is 10 second)
+- Success response<br>
+Code: 200 OK<br>
+Content: string array
+- Error response<br>
+Code: 404 NOT_FOUND<br>
+Content: ``Bucket `bucket_name` does not exists.``<br>
+
 
