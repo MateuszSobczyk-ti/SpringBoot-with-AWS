@@ -126,11 +126,11 @@ duration=[number] (by default is 10 seconds)
 - Success response<br>
 Code: 200 OK<br>
 Content: {<br>
-    "files": [number],<br>
+&emsp"files": [number],<br>
     "downloadCounter": [number],<br>
     "totalImagesSizeInKB": [number],<br>
     "fileData": [<br>
-        {<br>
+&emsp&emsp{<br>
             "name": [string],<br>
             "description": [string],<br>
             "imageUrl": [string],<br>
