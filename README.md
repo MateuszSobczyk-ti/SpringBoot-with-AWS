@@ -127,14 +127,14 @@ duration=[number] (by default is 10 seconds)
 Code: 200 OK<br>
 Content: {<br>
 &emsp;"files": [number],<br>
-    "downloadCounter": [number],<br>
-    "totalImagesSizeInKB": [number],<br>
-    "fileData": [<br>
+&emsp;"downloadCounter": [number],<br>
+&emsp;"totalImagesSizeInKB": [number],<br>
+&emsp;"fileData": [<br>
 &emsp;&emsp;{<br>
-            "name": [string],<br>
-            "description": [string],<br>
-            "imageUrl": [string],<br>
-            "imageSizeInKB": [number]<br>
-        }<br>
-    ]<br>
+&emsp;&emsp;&emsp;"name": [string],<br>
+&emsp;&emsp;&emsp;"description": [string],<br>
+&emsp;&emsp;&emsp; "imageUrl": [string],<br>
+&emsp;&emsp;&emsp;"imageSizeInKB": [number]<br>
+&emsp;&emsp;}<br>
+&emsp;]<br>
 }
