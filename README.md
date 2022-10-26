@@ -57,7 +57,7 @@ Content: ``File has been saved in bucket (or folder): `bucket_name```
 Code: 404 NOT_FOUND<br>
 Content: ``Bucket `bucket_name` does not exists.``<br>
   or<br>
-Code: 406 NOT_ALLOWED<br>
+Code: 406 NOT_ACCEPATBLE<br>
 Content: ``File cannot be empty and must be in jpeg, png or gif format``
 
 Download image from bucket
@@ -70,7 +70,7 @@ GET
 bucket_name=[string] (if not provided, then image is downloaded from default bucket)
 - Success response<br>
 Code: 200 OK<br>
-Content: byte array
+Content: [byte array]
 - Error response<br>
 Code: 404 NOT_FOUND<br>
 Content: ``Bucket `bucket_name` does not exists.``<br>
@@ -83,12 +83,58 @@ GET
 - URL params<br>
   Optional:<br>
 bucket_name=[string] (if not provided, then image is from default bucket)<br>
-duration=[number] (by default is 10 second)
+duration=[number] (by default is 10 seconds)
 - Success response<br>
 Code: 200 OK<br>
-Content: string array
+Content: [string array]
 - Error response<br>
 Code: 404 NOT_FOUND<br>
 Content: ``Bucket `bucket_name` does not exists.``<br>
+- Notes
+After time specified as 'duration' is over then access to url is denied. In order to get access again, you need to generate new url.
 
+Upload your image to default bucket and save additional information in database
+- URL<br>
+/api/file-store/uploadDB
+- Method<br>
+POST
+- URL params<br>
+file=[jpg/png/gif]<br>
+name=[string]<br>
+  Optional:<br>
+description=[string] 
+- Success response<br>
+Code: 200 OK<br>
+Content: ``File `file_name` has been saved.``
+- Error response<br>
+Code: 406 NOT_ACCEPATBLE<br>
+Content: ``File cannot be empty and must be in jpeg, png or gif format.``<br>
+  or<br>
+Code: 409 Conflict<br>
+Content: ``File name cannot be empty and must be unique.``
+- Notes
+Information stored in database: name, description, link to image, image size, download counter. Image is stored in S3 in default bucket.
 
+Get additional information about images
+- URL<br>
+/api/file-store/getImageUrlsDB
+- Method<br>
+GET
+- URL params<br>
+  Optional:<br>
+duration=[number] (by default is 10 seconds)
+- Success response<br>
+Code: 200 OK<br>
+Content: {<br>
+    "files": [number],<br>
+    "downloadCounter": [number],<br>
+    "totalImagesSizeInKB": [number],<br>
+    "fileData": [<br>
+        {<br>
+            "name": [string],<br>
+            "description": [string],<br>
+            "imageUrl": [string],<br>
+            "imageSizeInKB": [number]<br>
+        }<br>
+    ]<br>
+}
