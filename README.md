@@ -138,3 +138,28 @@ Content: {<br>
 &emsp;&emsp;}<br>
 &emsp;]<br>
 }
+
+## How to install and run the project?
+As I wrote before you application is running on AWS EC2 server, this is my url: `54.72.253.131:8080`.
+To run docker image on-premises:
+1. Get image from dockerhub repository
+```
+docker pull 91059/demo:latest
+```
+2. Run it. Inside container application is running on port 8080. 
+```
+docker run -p 8081:8080 91059/demo:latest
+```
+3. Test it 
+```
+curl localhost:8081/api/file-store/test
+```
+... and use another endpoints described above.
+
+## Author
+Mateusz Sobczyk - [LinkedIn](https://www.linkedin.com/in/mateusz-sobczyk-635320164/)
+
+## License
+The MIT License (MIT)
+
+Copyright (c) 2022 Mateusz Sobczyk
