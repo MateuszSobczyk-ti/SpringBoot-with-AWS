@@ -23,7 +23,7 @@ Under the hood, it consist of many AWS services like: Task, Service, Cluster. I 
 ## How exactly it works?
 I recommend you to test my app with your favorite API tool like Postman, Swagger or curl. My domain is 54.72.253.131, port is 8080. So to test
 if you can reach my api, send GET request without parameters `54.72.253.131:8080/api/file-store/test`. The answer should be "Helllllo" (It may doesn't work because AWS ECS
-is not a free service, so my app will not be available for a long time. Otherwise you can download docker image and run app on-premises).
+is not a free service, so my app will not be available for a long time).
 
 #### API's description:
 
@@ -138,23 +138,6 @@ Content: {<br>
 &emsp;&emsp;}<br>
 &emsp;]<br>
 }
-
-## How to install and run the project?
-As I wrote before you application is running on AWS EC2 server, this is my url: `54.72.253.131:8080`.
-To run docker image on-premises:
-1. Get image from dockerhub repository
-```
-docker pull 91059/demo:latest
-```
-2. Run it. Inside container application is running on port 8080. 
-```
-docker run -p 8081:8080 91059/demo:latest
-```
-3. Test it 
-```
-curl localhost:8081/api/file-store/test
-```
-... and use another endpoints described above.
 
 ## Author
 Mateusz Sobczyk - [LinkedIn](https://www.linkedin.com/in/mateusz-sobczyk-635320164/)
