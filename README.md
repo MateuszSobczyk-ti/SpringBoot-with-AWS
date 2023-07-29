@@ -1,4 +1,4 @@
-# TestThingApp
+# SpringBoot with AWS
 
 ## Overview
 This is simple backend application, which helped me develop my skills in term of Java language, Spring framework and database management.
